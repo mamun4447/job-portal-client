@@ -5,7 +5,8 @@ import Spinner from "../components/spinner/spinner";
 
 const JobDetails = () => {
   const { loading } = useContext(AuthContext);
-  const job = useLoaderData();
+  const loadedData = useLoaderData();
+  const job = loadedData?.result;
   // console.log(job);
   if (loading) {
     return <Spinner />;
@@ -33,7 +34,7 @@ const JobDetails = () => {
               Full-Time
             </span>
             <span className="bg-green-100 text-green-600 px-3 py-1 rounded-full">
-              ${job?.salaryRange.min} - ${job?.salaryRange.max}/month
+              ${job?.salaryRange?.min} - ${job?.salaryRange?.max}/month
             </span>
             <span className="text-gray-500">3 days ago</span>
           </div>
@@ -45,9 +46,12 @@ const JobDetails = () => {
           {/* Responsibilities */}
           <h2 className="text-xl font-semibold mb-2">Responsibilities</h2>
 
-          {job?.responsibilities?.map((res, id) => (
-            <ul className="list-disc pl-5 text-gray-700 space-y-2 mb-6">
-              <li key={id}>{res}</li>
+          {job?.responsibilities?.map((res, idx) => (
+            <ul
+              key={idx}
+              className="list-disc pl-5 text-gray-700 space-y-2 mb-6"
+            >
+              <li>{res}</li>
             </ul>
           ))}
 

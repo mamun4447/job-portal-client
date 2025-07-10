@@ -100,6 +100,7 @@ const AddJob = () => {
       className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow space-y-6"
     >
       <h2 className="text-2xl font-bold">Post a New Job</h2>
+      <p>For testing purpose, empty fields are allowed!</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Job Title */}

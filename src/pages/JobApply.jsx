@@ -60,6 +60,7 @@ const JobApply = () => {
         Apply for{" "}
         <span className="text-blue-500">{jobs_data?.result?.title}</span>
       </h2>
+      <p>For testing purpose, empty fields are allowed!</p>
 
       <div>
         <label className="block mb-1 text-sm">LinkedIn URL</label>
