@@ -64,7 +64,7 @@ const Categories = () => {
             <motion.div
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: index / 10 + 0.1 }}
               key={index}
               className="bg-blue-50 hover:bg-blue-100 transition rounded-xl p-6 flex flex-col items-center text-center shadow-sm cursor-pointer"
             >

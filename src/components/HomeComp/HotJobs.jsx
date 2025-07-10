@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const HotJobs = () => {
   const [jobs, setJobs] = useState([]);
-  const [allJobs, setAllJobs] = useState([]);
+  // const [allJobs, setAllJobs] = useState([]);
   const Categories = [
     "Engineering",
     "Marketing",
@@ -22,7 +22,7 @@ const HotJobs = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data?.success) {
-          setAllJobs(data?.result);
+          // setAllJobs(data?.result);
           return setJobs(data?.result.slice(0, 6));
         }
         toast.error(data?.message);
