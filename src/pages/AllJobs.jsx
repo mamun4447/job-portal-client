@@ -1,9 +1,20 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import HotJobsCard from "../components/HomeComp/HotJobsCard";
 
 const AllJobs = () => {
-  const { state } = useLocation();
-  // console.log(state);
+  const loadedData = useLoaderData();
+  const jobs = loadedData?.result;
+  // console.log(jobs);
+  const Categories = [
+    "Engineering",
+    "Marketing",
+    "Finance",
+    "Teaching",
+    "Management",
+    "Data Science",
+    "Design",
+    "Development",
+  ];
 
   return (
     <div className="container mx-auto px-4 my-10">
@@ -19,14 +30,19 @@ const AllJobs = () => {
 
       {/* ===>Category Section<=== */}
       <div className="flex gap-2 justify-center my-10">
-        {state?.map((jobInfo) => (
-          <Link className="btn hover:border-blue-500">{jobInfo?.category}</Link>
+        {Categories?.map((category, id) => (
+          <Link
+            key={id}
+            className="btn hover:border-blue-500 hover:text-blue-500"
+          >
+            {category}
+          </Link>
         ))}
       </div>
 
       {/* Job Cards */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {state?.map((job, id) => (
+        {jobs?.map((job, id) => (
           <HotJobsCard key={id} job={job} id={id} />
         ))}
       </div>

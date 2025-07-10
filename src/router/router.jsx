@@ -8,6 +8,9 @@ import PrivateRoute from "./PrivateRoute";
 import JobApply from "../pages/JobApply";
 import ApplicantDashboard from "../pages/Dashboard/AplicantDashboard";
 import AllJobs from "../pages/AllJobs";
+import AddJob from "../pages/AddJob";
+import ClientDashboard from "../pages/Dashboard/ClientDashboard";
+import Applications from "../pages/Dashboard/Applications";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +52,29 @@ const router = createBrowserRouter([
       {
         path: "/all-jobs",
         element: <AllJobs />,
+        loader: () => fetch("http://localhost:5000/jobs"),
+      },
+      {
+        path: "/cilent-dashboard",
+        element: (
+          <PrivateRoute>
+            <ClientDashboard />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/applications/:job_id",
+        element: (
+          <PrivateRoute>
+            <Applications />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/applications/jobs/${params.job_id}`),
+      },
+      {
+        path: "/add-jobs",
+        element: <AddJob />,
       },
       {
         path: "/signin",

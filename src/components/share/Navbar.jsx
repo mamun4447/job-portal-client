@@ -19,17 +19,17 @@ const Navbar = () => {
           <Link to="/" className="hover:text-blue-600">
             Home
           </Link>
-          <Link to="/jobs" className="hover:text-blue-600">
-            Jobs
+          <Link to="/all-jobs" className="hover:text-blue-600">
+            All Jobs
           </Link>
           <Link to="/dashboard" className="hover:text-blue-600">
             Dashboard
           </Link>
-          <Link to="/about" className="hover:text-blue-600">
-            About
+          <Link to="/add-jobs" className="hover:text-blue-600">
+            Post New Job
           </Link>
-          <Link to="/contact" className="hover:text-blue-600">
-            Contact
+          <Link to="/cilent-dashboard" className="hover:text-blue-600">
+            Client Dashboard
           </Link>
         </nav>
 

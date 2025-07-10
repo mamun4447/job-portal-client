@@ -6,6 +6,16 @@ import { Link } from "react-router-dom";
 const HotJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [allJobs, setAllJobs] = useState([]);
+  const Categories = [
+    "Engineering",
+    "Marketing",
+    "Finance",
+    "Teaching",
+    "Management",
+    "Data Science",
+    "Design",
+    "Development",
+  ];
 
   useEffect(() => {
     fetch("http://localhost:5000/jobs")
@@ -33,9 +43,12 @@ const HotJobs = () => {
 
         {/* ===>Category Section<=== */}
         <div className="flex gap-2 justify-center my-10">
-          {allJobs?.map((jobInfo) => (
-            <Link className="btn hover:border-blue-500">
-              {jobInfo?.category}
+          {Categories?.map((category, id) => (
+            <Link
+              key={id}
+              className="btn hover:border-blue-500 hover:text-blue-500"
+            >
+              {category}
             </Link>
           ))}
         </div>
@@ -49,7 +62,6 @@ const HotJobs = () => {
         <div className="text-center my-4">
           <Link
             to={"/all-jobs"}
-            state={allJobs}
             className="btn bg-blue-500 text-white hover:bg-blue-600"
           >
             All Jobs

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthProvider";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const ApplicantDashboard = () => {
   const { user } = useContext(AuthContext);
@@ -34,24 +35,26 @@ const ApplicantDashboard = () => {
           <table className="min-w-full bg-white rounded-xl shadow-sm">
             <thead className="bg-gray-100 text-left">
               <tr>
+                <th className="py-3 px-4"></th>
                 <th className="py-3 px-4">Job Title</th>
                 <th className="py-3 px-4">Company</th>
-                <th className="py-3 px-4">Date Applied</th>
                 <th className="py-3 px-4">Status</th>
                 <th className="py-3 px-4">Resume</th>
+                <th className="py-3 px-4">Action</th>
               </tr>
             </thead>
             <tbody>
               {applications.map((app, idx) => (
                 <tr key={idx} className="border-t">
+                  <td className="py-3 px-4">{idx + 1}</td>
                   <td className="py-3 px-4">{app.title}</td>
                   <td className="py-3 px-4">{app.company}</td>
-                  <td className="py-3 px-4">
+                  {/* <td className="py-3 px-4">
                     {new Date(app.applicationDeadline).toLocaleDateString()}
-                  </td>
+                  </td> */}
                   <td className="py-3 px-4">
                     <span
-                      className={`px-3 py-1 rounded-full text-sm font-medium ${
+                      className={`px-3 py-2 rounded-full text-sm font-medium ${
                         app.status === "Pending"
                           ? "bg-yellow-100 text-yellow-800"
                           : app.status === "Shortlisted"
@@ -59,21 +62,27 @@ const ApplicantDashboard = () => {
                           : "bg-red-100 text-red-600"
                       }`}
                     >
-                      {app.status}
+                      {app?.status}
                     </span>
                   </td>
                   <td className="py-3 px-4">
-                    {app.resume ? (
-                      <a
-                        href={app.resume}
+                    {app?.resume ? (
+                      <Link
+                        to={app?.resume}
                         className="text-blue-600 hover:underline"
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                       >
                         View
-                      </a>
+                      </Link>
                     ) : (
                       "N/A"
+                    )}
+                  </td>
+                  <td className="py-3 px-4">
+                    <button className="btn btn-error">Delete</button>
+                    {app?.status === "Pending" && (
+                      <Link className="btn btn-accent">Update</Link>
                     )}
                   </td>
                 </tr>

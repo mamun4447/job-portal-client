@@ -25,6 +25,7 @@ const JobApply = () => {
     const linkedIn = data.get("linkedIn");
     const gitHub = data.get("gitHub");
     const resume = data.get("resume");
+    const portfolio = data.get("portfolio");
     const coverLetter = data.get("coverLetter");
     const application = {
       job_id: id,
@@ -32,7 +33,9 @@ const JobApply = () => {
       linkedIn,
       gitHub,
       resume,
+      portfolio,
       coverLetter,
+      status: "Pending",
     };
     // console.log(application);
 
@@ -63,7 +66,6 @@ const JobApply = () => {
         <input
           type="url"
           name="linkedIn"
-          required
           className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
@@ -73,21 +75,26 @@ const JobApply = () => {
         <input
           type="url"
           name="gitHub"
-          required
           className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
       <div>
+        <label className="block mb-1 text-sm">Portfolio URL</label>
+        <input
+          type="url"
+          name="portfolio"
+          className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+      <div>
         <label className="block mb-1 text-sm">Resume URL</label>
         <input
           type="url"
           name="resume"
-          required
           className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
-
       <div>
         <label className="block mb-1 text-sm">Cover Letter</label>
         <textarea
