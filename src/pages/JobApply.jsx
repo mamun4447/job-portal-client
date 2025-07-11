@@ -40,7 +40,9 @@ const JobApply = () => {
     // console.log(application);
 
     try {
-      const res = await axios.post("http://localhost:5000/apply", application);
+      const res = await axios.post("http://localhost:5000/apply", application, {
+        withCredentials: true,
+      });
       if (res?.data?.success) {
         navigate("/dashboard");
         return toast.success(res?.data?.message);

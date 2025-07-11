@@ -1,14 +1,10 @@
 import { Link } from "react-router-dom";
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-} from "react-icons/fa";
+import { TiWorld } from "react-icons/ti";
+import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-16 pb-10">
+    <footer className=" bg-blue-950 text-gray-300 pt-16 pb-10">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Logo + About */}
         <div>
@@ -24,18 +20,25 @@ const Footer = () => {
           </p>
           {/* Socials */}
           <div className="flex space-x-4 mt-6">
-            <a href="#" className="hover:text-white">
+            <Link
+              to={"https://www.facebook.com/abdullah.al.mamun.695194/"}
+              className="hover:text-white"
+            >
               <FaFacebookF />
-            </a>
-            <a href="#" className="hover:text-white">
-              <FaTwitter />
-            </a>
-            <a href="#" className="hover:text-white">
+            </Link>
+
+            <Link
+              to={"https://www.linkedin.com/in/al-mamun-abdullah/"}
+              className="hover:text-white"
+            >
               <FaLinkedinIn />
-            </a>
-            <a href="#" className="hover:text-white">
-              <FaInstagram />
-            </a>
+            </Link>
+            <Link
+              to={"https://abdullah-mamun.web.app/"}
+              className="hover:text-white"
+            >
+              <TiWorld />
+            </Link>
           </div>
         </div>
 
@@ -44,17 +47,23 @@ const Footer = () => {
           <h3 className="text-white font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/about" className="hover:underline">
+              <Link
+                to="https://abdullah-mamun.web.app/"
+                className="hover:underline"
+              >
                 About Us
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="hover:underline">
+              <Link
+                to="https://abdullah-mamun.web.app"
+                className="hover:underline"
+              >
                 Contact
               </Link>
             </li>
             <li>
-              <Link to="/jobs" className="hover:underline">
+              <Link to="/all-jobs" className="hover:underline">
                 Browse Jobs
               </Link>
             </li>
@@ -71,22 +80,22 @@ const Footer = () => {
           <h3 className="text-white font-semibold mb-4">Categories</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/jobs?category=Design" className="hover:underline">
+              <Link to="/all-jobs" className="hover:underline">
                 Design
               </Link>
             </li>
             <li>
-              <Link to="/jobs?category=Development" className="hover:underline">
+              <Link to="/all-jobs" className="hover:underline">
                 Development
               </Link>
             </li>
             <li>
-              <Link to="/jobs?category=Marketing" className="hover:underline">
+              <Link to="/all-jobs" className="hover:underline">
                 Marketing
               </Link>
             </li>
             <li>
-              <Link to="/jobs?category=Accounting" className="hover:underline">
+              <Link to="/all-jobs" className="hover:underline">
                 Accounting
               </Link>
             </li>
@@ -98,8 +107,7 @@ const Footer = () => {
           <h3 className="text-white font-semibold mb-4">Contact</h3>
           <ul className="text-sm space-y-2">
             <li>📍 Dhaka, Bangladesh</li>
-            <li>📞 +880 1234-567890</li>
-            <li>✉️ support@jobbox.com</li>
+            <li>✉️ abdullah.mamun67896@gmail.com</li>
           </ul>
         </div>
       </div>

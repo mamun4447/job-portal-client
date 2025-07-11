@@ -11,6 +11,16 @@ import AllJobs from "../pages/AllJobs";
 import AddJob from "../pages/AddJob";
 import ClientDashboard from "../pages/Dashboard/ClientDashboard";
 import Applications from "../pages/Dashboard/Applications";
+import axios from "axios";
+
+const homeLoader = async () => {
+  try {
+    const res = await axios.get("https://api.example.com/data");
+    return res.data; // loader must return data
+  } catch (err) {
+    throw new Response("Failed to load", { status: 500 });
+  }
+};
 
 const router = createBrowserRouter([
   {
@@ -23,11 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/jobs/:id",
-        element: (
-          <PrivateRoute>
-            <JobDetails />
-          </PrivateRoute>
-        ),
+        element: <JobDetails />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/jobs/${params.id}`),
       },
@@ -69,8 +75,13 @@ const router = createBrowserRouter([
             <Applications />
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/applications/jobs/${params.job_id}`),
+        loader: async ({ params }) => {
+          const res = await axios.get(
+            `http://localhost:5000/applications/jobs/${params.job_id}`,
+            { withCredentials: true }
+          );
+          return res.data; // ✅ only return the useful data
+        },
       },
       {
         path: "/add-jobs",

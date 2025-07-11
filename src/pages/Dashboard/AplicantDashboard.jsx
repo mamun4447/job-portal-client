@@ -12,7 +12,8 @@ const ApplicantDashboard = () => {
     const fetchApplications = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/applications?email=${user?.email}`
+          `http://localhost:5000/applications?email=${user?.email}`,
+          { withCredentials: true }
         );
         if (res?.data?.success) {
           return setApplications(res?.data?.result);
@@ -58,6 +59,8 @@ const ApplicantDashboard = () => {
                         app.status === "Pending"
                           ? "bg-yellow-100 text-yellow-800"
                           : app.status === "Shortlisted"
+                          ? "bg-green-100 text-green-700"
+                          : app.status === "Scheduled"
                           ? "bg-green-100 text-green-700"
                           : "bg-red-100 text-red-600"
                       }`}

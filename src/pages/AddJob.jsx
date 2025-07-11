@@ -82,7 +82,9 @@ const AddJob = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/jobs", formData);
+      const res = await axios.post("http://localhost:5000/jobs", formData, {
+        withCredentials: true,
+      });
       if (res?.data?.success) {
         navigate("/cilent-dashboard");
         return toast.success(res?.data?.message);

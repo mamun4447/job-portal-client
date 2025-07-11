@@ -3,28 +3,26 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import toast from "react-hot-toast";
 import SmallSpinner from "../../components/spinner/SmallSpinner";
-import Spinner from "../../components/spinner/spinner";
+import axios from "axios";
 
 const SignIn = () => {
   const { loading, userLogIn, googleSignIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
-  // if (loading) {
-  //   return <Spinner />;
-  // }
-
-  // useEffect(() => {
-  //   if (user !== null && user !== undefined) {
-  //     return navigate("/");
-  //   }
-  // }, [user, navigate]);
-
   //===>Google Login<===//
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((res) => {
-        toast.success("User successfully logged In!");
+        const user = { email: res?.user?.email };
+        // console.log(user);
+        axios
+          .post("http://localhost:5000/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            toast.success("User successfully logged In!");
+          });
         navigate(location?.state || "/");
       })
       .catch((error) => toast.error(error.code));
@@ -40,7 +38,14 @@ const SignIn = () => {
 
     userLogIn(email, password)
       .then((res) => {
-        toast.success(`Signed In Successfully!`);
+        const user = { email };
+        axios
+          .post("http://localhost:5000/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            toast.success(`Signed In Successfully!`);
+          });
         navigate(location?.state || "/");
       })
       .catch((error) => toast.error(error.code));

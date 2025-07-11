@@ -11,7 +11,8 @@ const Applications = () => {
     const data = { status: e.target.value };
     const res = await axios.patch(
       `http://localhost:5000/applications/${id}`,
-      data
+      data,
+      { withCredentials: true }
     );
     if (res?.data?.success) {
       return toast.success(res?.data?.message);
@@ -69,6 +70,7 @@ const Applications = () => {
                       <option disabled>Change Status</option>
                       <option value="Pending">Pending</option>
                       <option value="Shortlisted">Short listed</option>
+                      <option value="Scheduled">Scheduled</option>
                       <option value="Rejected">Rejected</option>
                     </select>
                   </td>

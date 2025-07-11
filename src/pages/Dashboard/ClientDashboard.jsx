@@ -15,7 +15,8 @@ const ClientDashboard = () => {
     const fetchPostedJobs = async () => {
       try {
         const myJobs = await axios.get(
-          `http://localhost:5000/allJobs?email=${user?.email}`
+          `http://localhost:5000/allJobs?email=${user?.email}`,
+          { withCredentials: true }
         );
         if (myJobs?.data?.success) {
           // console.log(myJobs?.data);
