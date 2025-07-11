@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/AuthProvider";
 import toast from "react-hot-toast";
 import SmallSpinner from "../../components/spinner/SmallSpinner";
 import Spinner from "../../components/spinner/spinner";
+import axios from "axios";
 
 const Register = () => {
   const { createUser, googleSignIn, loading } = useContext(AuthContext);
@@ -18,7 +19,15 @@ const Register = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((res) => {
-        toast.success("User successfully logged In!");
+        const user = { email: res?.user?.email };
+        // console.log(user);
+        axios
+          .post("http://localhost:5000/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            toast.success("User successfully logged In!");
+          });
         navigate(location?.state || "/");
       })
       .catch((error) => toast.error(error.code));
@@ -36,7 +45,14 @@ const Register = () => {
 
     createUser(email, password)
       .then((res) => {
-        toast.success(`${name}'s Account Registered Successfully!`);
+        const user = { email };
+        axios
+          .post("http://localhost:5000/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            toast.success(`${name}'s Account Registered Successfully!`);
+          });
         navigate(location?.state || "/");
       })
       .catch((error) => {
