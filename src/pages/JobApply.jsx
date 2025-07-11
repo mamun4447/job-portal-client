@@ -1,21 +1,16 @@
-import { useContext, useState } from "react";
-import {
-  Navigate,
-  useLoaderData,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useContext } from "react";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
-import axios from "axios";
-import Spinner from "../components/spinner/spinner";
 import toast from "react-hot-toast";
 import SmallSpinner from "../components/spinner/SmallSpinner";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const JobApply = () => {
   const { user, loading } = useContext(AuthContext);
   const jobs_data = useLoaderData();
   const { id } = useParams();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   // console.log(jobs_data);
 
   const handleSubmit = async (e) => {
@@ -40,9 +35,7 @@ const JobApply = () => {
     // console.log(application);
 
     try {
-      const res = await axios.post("http://localhost:5000/apply", application, {
-        withCredentials: true,
-      });
+      const res = await axiosSecure.post("/apply", application);
       if (res?.data?.success) {
         navigate("/dashboard");
         return toast.success(res?.data?.message);

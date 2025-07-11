@@ -3,18 +3,17 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthProvider";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ApplicantDashboard = () => {
   const { user } = useContext(AuthContext);
   const [applications, setApplications] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/applications?email=${user?.email}`,
-          { withCredentials: true }
-        );
+        const res = await axiosSecure.get(`/applications?email=${user?.email}`);
         if (res?.data?.success) {
           return setApplications(res?.data?.result);
         }
@@ -25,7 +24,7 @@ const ApplicantDashboard = () => {
     };
 
     fetchApplications();
-  }, [user?.email]);
+  }, [user?.email, axiosSecure]);
 
   return (
     <section className="py-12 px-4">

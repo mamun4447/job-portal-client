@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import toast from "react-hot-toast";
 import SmallSpinner from "../../components/spinner/SmallSpinner";
-import axios from "axios";
 
 const SignIn = () => {
   const { loading, userLogIn, googleSignIn } = useContext(AuthContext);
@@ -14,15 +13,7 @@ const SignIn = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((res) => {
-        const user = { email: res?.user?.email };
-        // console.log(user);
-        axios
-          .post("http://localhost:5000/jwt", user, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            toast.success("User successfully logged In!");
-          });
+        toast.success("User successfully logged In!");
         navigate(location?.state || "/");
       })
       .catch((error) => toast.error(error.code));
@@ -38,14 +29,7 @@ const SignIn = () => {
 
     userLogIn(email, password)
       .then((res) => {
-        const user = { email };
-        axios
-          .post("http://localhost:5000/jwt", user, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            toast.success(`Signed In Successfully!`);
-          });
+        toast.success(`Signed In Successfully!`);
         navigate(location?.state || "/");
       })
       .catch((error) => toast.error(error.code));

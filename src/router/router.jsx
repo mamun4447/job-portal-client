@@ -13,14 +13,14 @@ import ClientDashboard from "../pages/Dashboard/ClientDashboard";
 import Applications from "../pages/Dashboard/Applications";
 import axios from "axios";
 
-const homeLoader = async () => {
-  try {
-    const res = await axios.get("https://api.example.com/data");
-    return res.data; // loader must return data
-  } catch (err) {
-    throw new Response("Failed to load", { status: 500 });
-  }
-};
+// const homeLoader = async () => {
+//   try {
+//     const res = await axios.get("https://api.example.com/data");
+//     return res.data; // loader must return data
+//   } catch (err) {
+//     throw new Response("Failed to load", { status: 500 });
+//   }
+// };
 
 const router = createBrowserRouter([
   {

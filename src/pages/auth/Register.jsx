@@ -19,15 +19,7 @@ const Register = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((res) => {
-        const user = { email: res?.user?.email };
-        // console.log(user);
-        axios
-          .post("http://localhost:5000/jwt", user, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            toast.success("User successfully logged In!");
-          });
+        toast.success("User successfully logged In!");
         navigate(location?.state || "/");
       })
       .catch((error) => toast.error(error.code));
@@ -45,14 +37,7 @@ const Register = () => {
 
     createUser(email, password)
       .then((res) => {
-        const user = { email };
-        axios
-          .post("http://localhost:5000/jwt", user, {
-            withCredentials: true,
-          })
-          .then((res) => {
-            toast.success(`${name}'s Account Registered Successfully!`);
-          });
+        toast.success(`${name}'s Account Registered Successfully!`);
         navigate(location?.state || "/");
       })
       .catch((error) => {

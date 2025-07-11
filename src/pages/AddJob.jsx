@@ -5,6 +5,7 @@ import { AuthContext } from "../context/AuthProvider";
 import SmallSpinner from "../components/spinner/SmallSpinner";
 import toast from "react-hot-toast";
 import { Navigate, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AddJob = () => {
   const { user } = useContext(AuthContext);
@@ -29,6 +30,7 @@ const AddJob = () => {
 
   const [reqInput, setReqInput] = useState("");
   const [respInput, setRespInput] = useState("");
+  const axiosSecure = useAxiosSecure();
   const Categories = [
     "Engineering",
     "Marketing",
@@ -82,9 +84,7 @@ const AddJob = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/jobs", formData, {
-        withCredentials: true,
-      });
+      const res = await axiosSecure.post("/jobs", formData);
       if (res?.data?.success) {
         navigate("/cilent-dashboard");
         return toast.success(res?.data?.message);

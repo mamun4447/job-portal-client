@@ -8,6 +8,8 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import axios from "axios";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -39,12 +41,23 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
-
+  const axiosSecure = useAxiosSecure();
   //===>set users<===//
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      const user = { email: currentUser?.email };
+      if (currentUser?.email) {
+        axiosSecure.post("/jwt", user).then((res) => {
+          setLoading(false);
+          // console.log(res.data);
+        });
+      } else {
+        axiosSecure.post("/logout", {}).then((res) => {
+          // console.log(res.data);
+          setLoading(false);
+        });
+      }
     });
 
     return () => {

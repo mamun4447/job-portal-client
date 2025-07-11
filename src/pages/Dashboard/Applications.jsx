@@ -1,19 +1,17 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Applications = () => {
   const { result } = useLoaderData();
+  const axiosSecure = useAxiosSecure();
   //   console.log(result);
 
   const handleChangeStatus = async (e, id) => {
     console.log(e.target.value, id);
     const data = { status: e.target.value };
-    const res = await axios.patch(
-      `http://localhost:5000/applications/${id}`,
-      data,
-      { withCredentials: true }
-    );
+    const res = await axiosSecure.patch(`/applications/${id}`, data);
     if (res?.data?.success) {
       return toast.success(res?.data?.message);
     }

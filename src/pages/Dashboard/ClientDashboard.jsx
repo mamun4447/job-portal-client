@@ -5,19 +5,18 @@ import { AuthContext } from "../../context/AuthProvider";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ClientDashboard = () => {
   const [myPostedJobs, setMyPostedJobs] = useState([]);
   const { user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
   // console.log(myPostedJobs);
 
   useEffect(() => {
     const fetchPostedJobs = async () => {
       try {
-        const myJobs = await axios.get(
-          `http://localhost:5000/allJobs?email=${user?.email}`,
-          { withCredentials: true }
-        );
+        const myJobs = await axiosSecure.get(`/allJobs?email=${user?.email}`);
         if (myJobs?.data?.success) {
           // console.log(myJobs?.data);
           return setMyPostedJobs(myJobs?.data?.result);
@@ -28,7 +27,7 @@ const ClientDashboard = () => {
       }
     };
     fetchPostedJobs();
-  }, [user?.email]);
+  }, [user?.email, axiosSecure]);
 
   return (
     <section className="py-12 px-4">
