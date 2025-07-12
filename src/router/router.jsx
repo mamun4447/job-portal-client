@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         path: "/jobs/:id",
         element: <JobDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(`https://server-job-portal-seven.vercel.app/jobs/${params.id}`),
       },
       {
         path: "/apply/:id",
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(`https://server-job-portal-seven.vercel.app/jobs/${params.id}`),
       },
       {
         path: "/dashboard",
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
       {
         path: "/all-jobs",
         element: <AllJobs />,
-        loader: () => fetch("http://localhost:5000/jobs"),
+        loader: () => fetch("https://server-job-portal-seven.vercel.app/jobs"),
       },
       {
         path: "/cilent-dashboard",
@@ -77,7 +77,7 @@ const router = createBrowserRouter([
         ),
         loader: async ({ params }) => {
           const res = await axios.get(
-            `http://localhost:5000/applications/jobs/${params.job_id}`,
+            `https://server-job-portal-seven.vercel.app/applications/jobs/${params.job_id}`,
             { withCredentials: true }
           );
           return res.data; // ✅ only return the useful data

@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthProvider";
 import toast from "react-hot-toast";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://server-job-portal-seven.vercel.app",
   withCredentials: true,
 });
 

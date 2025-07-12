@@ -18,7 +18,7 @@ const HotJobs = () => {
   ];
 
   useEffect(() => {
-    fetch("http://localhost:5000/jobs")
+    fetch("https://server-job-portal-seven.vercel.app/jobs")
       .then((res) => res.json())
       .then((data) => {
         if (data?.success) {

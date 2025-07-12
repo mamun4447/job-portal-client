@@ -51,15 +51,21 @@ const AuthProvider = ({ children }) => {
       const user = { email: currentUser?.email };
       if (currentUser?.email) {
         axios
-          .post("http://localhost:5000/jwt", user, { withCredentials: true })
-          .then((res) => {
+          .post("https://server-job-portal-seven.vercel.app/jwt", user, {
+            withCredentials: true,
+          })
+          .then(() => {
             setLoading(false);
             // console.log(res.data);
           });
       } else {
         axios
-          .post("http://localhost:5000/logout", {}, { withCredentials: true })
-          .then((res) => {
+          .post(
+            "https://server-job-portal-seven.vercel.app/logout",
+            {},
+            { withCredentials: true }
+          )
+          .then(() => {
             // console.log(res.data);
             setLoading(false);
           });
