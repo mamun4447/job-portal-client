@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { AuthContext } from "../../context/AuthProvider";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
@@ -17,7 +16,7 @@ const ApplicantDashboard = () => {
         if (res?.data?.success) {
           return setApplications(res?.data?.result);
         }
-        toast.error(res?.data?.message);
+        // toast.error(res?.data);
       } catch (error) {
         toast.error(error?.code);
       }

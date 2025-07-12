@@ -15,7 +15,7 @@ const Applications = () => {
     if (res?.data?.success) {
       return toast.success(res?.data?.message);
     }
-    toast.error(res?.data?.message);
+    // toast.error(res?.data?.message);
   };
   return (
     <section className="py-12 px-4">

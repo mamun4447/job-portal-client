@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
-import toast from "react-hot-toast";
 import { Navigate, useLocation } from "react-router-dom";
 import Spinner from "../components/spinner/spinner";
 

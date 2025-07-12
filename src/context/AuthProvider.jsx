@@ -41,22 +41,28 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
-  const axiosSecure = useAxiosSecure();
+
   //===>set users<===//
+  // const axiosSecure = useAxiosSecure();
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       const user = { email: currentUser?.email };
       if (currentUser?.email) {
-        axiosSecure.post("/jwt", user).then((res) => {
-          setLoading(false);
-          // console.log(res.data);
-        });
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            setLoading(false);
+            // console.log(res.data);
+          });
       } else {
-        axiosSecure.post("/logout", {}).then((res) => {
-          // console.log(res.data);
-          setLoading(false);
-        });
+        axios
+          .post("http://localhost:5000/logout", {}, { withCredentials: true })
+          .then((res) => {
+            // console.log(res.data);
+            setLoading(false);
+          });
       }
     });
 

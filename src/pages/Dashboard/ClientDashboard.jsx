@@ -21,7 +21,7 @@ const ClientDashboard = () => {
           // console.log(myJobs?.data);
           return setMyPostedJobs(myJobs?.data?.result);
         }
-        toast.error(myJobs?.data?.message);
+        // toast.error(myJobs?.data?.message);
       } catch (error) {
         toast.error(error.code);
       }
