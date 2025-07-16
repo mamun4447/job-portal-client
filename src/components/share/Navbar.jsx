@@ -41,7 +41,9 @@ const Navbar = () => {
                 } hover:text-white text-[18px] font-medium cursor-pointer`}
                 onClick={() => setActive(nav.title)}
               >
-                <Link to={nav?.link}>{nav?.title}</Link>
+                <Link to={nav?.link} className="hover:text-blue-500">
+                  {nav?.title}
+                </Link>
               </li>
             ))}
           </ul>
@@ -100,7 +102,7 @@ const Navbar = () => {
                     <li
                       key={id}
                       className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                        active === nav.title ? "text-white" : "text-secondary"
+                        active === nav.title ? "text-blue-500" : "text-blue-950"
                       }`}
                       onClick={() => {
                         setIsOpen(!isOpen);

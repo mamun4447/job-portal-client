@@ -80,12 +80,12 @@ const ApplicantDashboard = () => {
                       "N/A"
                     )}
                   </td>
-                  <td className="py-3 px-4">
-                    <button className="btn btn-error">Delete</button>
-                    {app?.status === "Pending" && (
+                  {app?.status === "Pending" && (
+                    <td className="py-3 px-4">
+                      <button className="btn btn-error">Delete</button>
                       <Link className="btn btn-accent">Update</Link>
-                    )}
-                  </td>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
