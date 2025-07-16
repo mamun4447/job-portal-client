@@ -29,11 +29,11 @@ const AllJobs = () => {
       </div>
 
       {/* ===>Category Section<=== */}
-      <div className="flex gap-2 justify-center my-10">
+      <div className="md:flex gap-2 justify-center my-10">
         {Categories?.map((category, id) => (
           <Link
             key={id}
-            className="btn hover:border-blue-500 hover:text-blue-500"
+            className="btn m-1 md:m-0 hover:border-blue-500 hover:text-blue-500"
           >
             {category}
           </Link>

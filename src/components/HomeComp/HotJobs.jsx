@@ -42,11 +42,11 @@ const HotJobs = () => {
         </div>
 
         {/* ===>Category Section<=== */}
-        <div className="flex gap-2 justify-center my-10">
+        <div className="md:flex  gap-2 justify-center my-10">
           {Categories?.map((category, id) => (
             <Link
               key={id}
-              className="btn hover:border-blue-500 hover:text-blue-500"
+              className="btn m-1 md:m-0 hover:border-blue-500 hover:text-blue-500"
             >
               {category}
             </Link>
@@ -54,7 +54,7 @@ const HotJobs = () => {
         </div>
 
         {/* Job Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {jobs?.map((job, id) => (
             <HotJobsCard key={id} job={job} id={id} />
           ))}

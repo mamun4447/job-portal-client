@@ -4,19 +4,15 @@ import { motion } from "motion/react";
 
 const Hero = () => {
   return (
-    <section className="flex mx-auto items-center  py-4">
-      <div
-        // animate={{ y: -50 }}
-        // transition={{ duration: 0.3 }}
-        className="container mx-auto px-4 "
-      >
+    <section className="flex flex-col-reverse md:flex-row   mx-auto items-center  py-4">
+      <div className="container mx-auto px-4 ">
         {/* Headline */}
         <motion.h1
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           // exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
-          className="text-4xl md:text-5xl font-bold text-blue-950 mb-4 leading-tight"
+          className="text-4xl text-center md:text-left md:text-5xl font-bold text-blue-950 mb-4 leading-tight"
         >
           Find Your <span className="text-blue-500">Dream Job</span> Easily
         </motion.h1>
@@ -25,7 +21,7 @@ const Hero = () => {
           animate={{ y: 0, opacity: 1 }}
           // exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
-          className="text-gray-600 text-lg md:text-xl mb-10 max-w-2xl mx-auto"
+          className="hidden md:block ml-0 text-gray-600 text-lg md:text-xl mb-10 max-w-2xl mx-auto"
         >
           Discover thousands of job opportunities, with all the information you
           need. It's your future. Come find it.
@@ -58,7 +54,7 @@ const Hero = () => {
           <button className="hover:underline text-blue-500">React</button>
         </div>
       </div>
-      <div>
+      <div className="max-w-lg md:w-full">
         <Lottie animationData={heroLottie} />
       </div>
     </section>

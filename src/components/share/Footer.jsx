@@ -4,14 +4,11 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className=" bg-blue-950 text-gray-300 pt-16 pb-10">
+    <footer className=" bg-gray-200 text-blue-950 pt-16 pb-10">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Logo + About */}
         <div>
-          <Link
-            to="/"
-            className="text-2xl font-bold text-white mb-4 inline-block"
-          >
+          <Link to="/" className="text-2xl font-bold  mb-4 inline-block">
             JobBox
           </Link>
           <p className="text-sm">
@@ -44,7 +41,7 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+          <h3 className=" font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li>
               <Link
@@ -77,7 +74,7 @@ const Footer = () => {
 
         {/* Categories */}
         <div>
-          <h3 className="text-white font-semibold mb-4">Categories</h3>
+          <h3 className="font-semibold mb-4">Categories</h3>
           <ul className="space-y-2 text-sm">
             <li>
               <Link to="/all-jobs" className="hover:underline">
@@ -104,7 +101,7 @@ const Footer = () => {
 
         {/* Contact Info */}
         <div>
-          <h3 className="text-white font-semibold mb-4">Contact</h3>
+          <h3 className=" font-semibold mb-4">Contact</h3>
           <ul className="text-sm space-y-2">
             <li>📍 Dhaka, Bangladesh</li>
             <li>✉️ abdullah.mamun67896@gmail.com</li>
@@ -113,7 +110,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="text-center text-sm text-gray-500 mt-10 border-t border-gray-700 pt-6">
+      <div className="text-center text-sm text-gray-500 mt-10 border-t border-gray-300 pt-6">
         © {new Date().getFullYear()} JobBox. All rights reserved.
       </div>
     </footer>
